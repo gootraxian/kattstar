@@ -221,8 +221,8 @@
   <!-- Right (Cat Video) Section -->
   <div class="right-space">
     <video id="cat-video" playsinline muted>
-      <source src="/src/gallery/SpawnCat.webm" type="video/webm">
-      <source src="/src/gallery/SpawnCat.mp4" type="video/mp4">
+      <source src="gallery/SpawnCat.webm" type="video/webm">
+      <source src="gallery/SpawnCat.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
@@ -291,8 +291,8 @@
       // When spawn ends, switch to idle loop
       catVideo.addEventListener('ended', () => {
         catVideo.innerHTML = `
-          <source src="/src/gallery/IdleCat.webm" type="video/webm">
-          <source src="/src/gallery/IdleCat.mp4" type="video/mp4">
+          <source src="gallery/IdleCat.webm" type="video/webm">
+          <source src="gallery/IdleCat.mp4" type="video/mp4">
         `;
         catVideo.loop = true;
         catVideo.load();
@@ -340,5 +340,6 @@ document.getElementById('age-counter').textContent = getCurrentValue();
 
 </body>
 </html>
+
 
 
