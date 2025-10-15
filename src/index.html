@@ -203,7 +203,7 @@
 
 <!-- Background Video -->
 <video autoplay muted loop id="bg-video">
-  <source src="gallery/Background.mp4" type="video/mp4">
+  <source src="/src/gallery/Background.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
@@ -221,8 +221,8 @@
   <!-- Right (Cat Video) Section -->
   <div class="right-space">
     <video id="cat-video" playsinline muted>
-      <source src="gallery/SpawnCat.webm" type="video/webm">
-      <source src="gallery/SpawnCat.mp4" type="video/mp4">
+      <source src="/src/gallery/SpawnCat.webm" type="video/webm">
+      <source src="/src/gallery/SpawnCat.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
@@ -241,13 +241,13 @@
     <i class="fab fa-tiktok"></i>
   </a>
   <a href="https://artfight.net/~Dawnblaze" class="social-button artfight-button" target="_blank" rel="noopener noreferrer">
-    <img src="gallery/artfight.png" alt="ArtFight">
+    <img src="/src/gallery/artfight.png" alt="ArtFight">
   </a>
   <a href="portafolio" class="other-text">Portafolio &gt;</a>
   
   <!-- Anonymous Message Box -->
 <div id="anon-message-box" style="position:fixed; bottom:100px; left:40px; z-index:10;">
-  <form id="messageForm" method="POST" action="send.php">
+  <form id="messageForm" method="POST" action="send.js">
     <textarea name="content" placeholder="Send an anonymous message..." rows="3" cols="30" style="resize:none; padding:8px; border-radius:8px; border:none;"></textarea><br>
     <button type="submit" style="padding:8px 12px; margin-top:5px; border-radius:8px; border:none; background:#5865F2; color:white;">Send</button>
   </form>
@@ -291,8 +291,8 @@
       // When spawn ends, switch to idle loop
       catVideo.addEventListener('ended', () => {
         catVideo.innerHTML = `
-          <source src="gallery/IdleCat.webm" type="video/webm">
-          <source src="gallery/IdleCat.mp4" type="video/mp4">
+          <source src="/src/gallery/IdleCat.webm" type="video/webm">
+          <source src="/src/gallery/IdleCat.mp4" type="video/mp4">
         `;
         catVideo.loop = true;
         catVideo.load();
@@ -340,3 +340,4 @@ document.getElementById('age-counter').textContent = getCurrentValue();
 
 </body>
 </html>
+
