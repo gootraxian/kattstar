@@ -1,0 +1,12 @@
+{
+  "name": "kattstar-website",
+  "version": "1.0.0",
+  "description": "Main site + AppyClan viewer",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
