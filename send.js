@@ -7,7 +7,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const WEBHOOK_URL = "YOUR_WEBHOOK_URL";
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1427860935925698580/B2jzHDinyRTysWMDXJA6Uep7KzgktrCq2cwSFinnF2o0tFUvFDrIKg5vNXR_MQAAOIFk";
 const LOG_FILE = path.join(process.cwd(), 'appylogs.txt');
 
 app.post('/send', async (req, res) => {
@@ -33,3 +33,4 @@ app.post('/send', async (req, res) => {
 });
 
 app.listen(3000, () => console.log("Webhook sender running on port 3000"));
+
