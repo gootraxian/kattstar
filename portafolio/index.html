@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Just a portafolio, what else?!" />
+  <meta name="keywords" content="Portafolio" />
+  <title>Dawn's list of stuff</title>
+  <link rel="icon" href="/gallery/favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,800&display=swap" rel="stylesheet" />
+  <link href="styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: black;
+      color: white;
+      overflow: hidden;
+    }
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+	  object-fit: cover;
+	  object-position: center;
+    }
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .loader-wrapper {
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
+      gap: 12px; 
+    }
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 8px solid #444;
+      border-top: 8px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    .loading-text {
+      color: #ffffff;
+      font-family: Consolas;
+      font-style: italic;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      margin-bottom: 10px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* === Force navbar dark and center menu === */
+    nav,
+    nav.bg-white,
+    nav.dark\:bg-gray-900 {
+      background-color: #111 !important;
+    }
+    #navbar-default ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #111 !important;
+    }
+    #navbar-default a {
+      color: white !important;
+    }
+    #navbar-default a:hover {
+      color: rgb(59, 130, 246) !important;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden focus:outline-none focus:ring-2" aria-controls="navbar-default" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
+        <li><a href="art2d" class="block py-2 px-3 bg-blue-700 rounded-sm md:bg-transparent md:p-0">2D Art</a></li>
+        <li><a href="art3d" class="block py-2 px-3 rounded-sm md:p-0">3D Art</a></li>
+        <li><a href="ui" class="block py-2 px-3 rounded-sm md:p-0">UI design</a></li>
+        <li><a href="animating" class="block py-2 px-3 rounded-sm md:p-0">Animating</a></li>
+        <li><a href="builds" class="block py-2 px-3 rounded-sm md:p-0">Building</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="loading-screen">
+  <div class="loader-wrapper">
+    <div class="loading-text" id="loading-text"></div>
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<video autoplay muted loop id="bg-video">
+  <source src="/gallery/Background.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<script>
+  // Typewriter effect for loading text
+  (function(){
+    const textEl = document.getElementById('loading-text');
+    const message = 'Loading :3...';
+    let index = 0;
+    function type() {
+      if (index < message.length) {
+        textEl.textContent += message.charAt(index);
+        index++;
+        setTimeout(type, 120);
+      }
+    }
+    type();
+  })();
+
+  // Fade out loading screen after full page load
+  window.onload = function () {
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.style.transition = 'opacity 0.5s ease';
+    loadingScreen.style.opacity = '0';
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+    }, 500);
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+/* Layout & sizing */
+.flex { display: flex; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.flex-col { flex-direction: column; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mt-4 { margin-top: 1rem; }
+.p-4 { padding: 1rem; }
+.p-2 { padding: 0.5rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+.md\:p-0 { padding: 0; }
+.w-full { width: 100%; }
+.w-10 { width: 2.5rem; }
+.w-5 { width: 1.25rem; }
+.h-8 { height: 2rem; }
+.h-10 { height: 2.5rem; }
+.h-5 { height: 1.25rem; }
+.hidden { display: none; }
+.md\:block { display: block; }
+.md\:flex-row { flex-direction: row; }
+.md\:w-auto { width: auto; }
+
+/* Typography */
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-gray-500 { color: rgb(107 114 128); }
+.text-gray-900 { color: rgb(17 24 39); }
+.text-white { color: #fff; }
+.text-blue-700 { color: rgb(29 78 216); }
+.md\:text-blue-700 { color: rgb(29 78 216); }
+.md\:dark\:text-blue-500 { color: rgb(59 130 246); }
+.dark\:text-white { color: #fff; }
+.dark\:text-gray-400 { color: rgb(156 163 175); }
+
+/* Backgrounds */
+.bg-white { 
+  background-color: rgba(255, 255, 255, 0.3); /* translucent white for blur */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 10;
+}
+.dark\:bg-gray-900 { 
+  background-color: rgba(255, 255, 255, 0.3); /* translucent white for blur */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 10;
+}
+.bg-gray-50 { background-color: rgb(243 244 246); } /* light gray */
+.bg-blue-700 { background-color: rgb(29 78 216); }
+.dark\:bg-gray-800 { background-color: rgb(31 41 55); }
+.hover\:bg-gray-100:hover { background-color: rgb(243 244 246); }
+.dark\:hover\:bg-gray-700:hover { background-color: rgb(55 65 81); }
+.md\:bg-transparent { background-color: transparent; }
+.md\:dark\:bg-gray-900 { background-color: rgb(17 24 39); }
+
+/* Borders & rounding */
+.border { border-width: 1px; }
+.border-gray-100 { border-color: rgb(243 244 246); }
+.border-gray-200 { border-color: rgb(229 231 235); }
+.dark\:border-gray-700 { border-color: rgb(55 65 81); }
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-sm { border-radius: 0.125rem; }
+.md\:border-0 { border-width: 0; }
+
+/* Spacing between items */
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 0.75rem;
+}
+.md\:space-x-8 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 2rem;
+}
+.rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  margin-right: var(--tw-space-x-reverse);
+}
+
+/* States */
+.hover\:bg-gray-100:hover { background-color: rgb(243 244 246); }
+.dark\:hover\:bg-gray-700:hover { background-color: rgb(55 65 81); }
+.dark\:hover\:text-white:hover { color: #fff; }
+.md\:hover\:text-blue-700:hover { color: rgb(29 78 216); }
+.md\:hover\:bg-transparent:hover { background-color: transparent; }
+
+/* Focus */
+.focus\:outline-none:focus { outline: 2px solid transparent; outline-offset: 2px; }
+.focus\:ring-2:focus { box-shadow: 0 0 0 2px currentColor; }
+.focus\:ring-gray-200:focus { --tw-ring-color: rgb(229 231 235); }
+.dark\:focus\:ring-gray-600:focus { --tw-ring-color: rgb(75 85 99); }
+
+/* Navbar container fix */
+nav.max-w-screen-xl {
+  position: relative; /* stacking context for backdrop-filter */
+  min-height: 3.5rem; /* ensure visible height */
+  border-radius: 0.5rem; /* smooth corners */
+}
+
+/* Remove background color on links with bg-blue-700 on md to show blur */
+.bg-blue-700 {
+  background-color: transparent !important;
+}
+
+/* Center the navbar text buttons */
+#navbar-default ul {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+  padding-left: 0;         /* remove default ul padding */
+  margin: 0 auto;          /* center the ul container horizontally */
+  list-style: none;        /* remove bullets */
+}
+
+#navbar-default ul li {
+  margin: 0 0.5rem; /* horizontal spacing between buttons */
+}
+
+#navbar-default ul li a {
+  display: flex;
+  align-items: center;      /* vertical center inside each button */
+  justify-content: center;  /* center text inside button */
+  height: 2.5rem;           /* consistent button height */
+  padding: 0 1rem;          /* horizontal padding */
+  text-align: center;       /* center text */
+}
