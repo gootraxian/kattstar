@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta property="og:title" content="Dawn's stuff">
+  <meta property="og:description" content="My bio, age, and other stuff!">
+  <meta property="og:url" content="https://pathowogen.rf.gd">
+  <meta name="theme-color" content="#43B581">
+  <title>Katt</title>
+  <link rel="icon" href="gallery/kitten.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: black;
+      color: white;
+      overflow: hidden;
+    }
+
+    /* Background video */
+    #bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+    }
+
+    /* Cat video */
+    #cat-video {
+      position: fixed;      /* sticks to corner */
+      bottom: 0;
+      right: 0;
+      width: 35%;           /* adjust size */
+      height: auto;
+      object-fit: contain;
+      border-radius: 15px;
+      opacity: 0;           /* start hidden */
+      transition: opacity 0.5s ease;
+      z-index: 1;
+	  clip-path: inset(0% 0% 0% 10%); /* top right bottom left */
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      height: 100vh;
+      padding: 40px;
+      box-sizing: border-box;
+    }
+
+    .bio-box {
+      width: 62.5%;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      animation: floatAll 3s ease-in-out infinite;
+    }
+
+    .bio-box h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1px;
+    }
+
+    .bio-box p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .socials {
+      position: absolute;
+      bottom: 30px;
+      left: 40px;
+      display: flex;
+      gap: 20px;
+      animation: floatAll 3s ease-in-out infinite;
+    }
+
+    .social-button {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #444;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      transition: 0.3s background-color, 0.2s transform;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .social-button:hover { background: #666; transform: scale(1.1); }
+    .discord-button { background: #5865F2; }
+    .discord-button:hover { background: #4853c8; }
+    .youtube-button { background: #FF0000; }
+    .youtube-button:hover { background: #cc0000; }
+    .tiktok-button { background: #000; }
+    .tiktok-button:hover { background: #1a1a1a; }
+    .artfight-button {
+      background: #dbfff8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: 0.3s background-color, 0.2s transform;
+    }
+    .artfight-button:hover { background: #b8d9d2; transform: scale(1.1); }
+    .artfight-button img { width: 28px; height: 28px; object-fit: contain; }
+
+    .other-text {
+      margin-top: 18px;
+      font-size: 1rem;
+      color: #aaa;
+      font-weight: 500;
+      text-decoration: none;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+    .other-text:hover { color: white; cursor: pointer; }
+
+    .List { margin: 1px; font-size: 1.1rem; }
+    .List strong { font-size: 1.2rem; margin-right: 0px; }
+
+    @keyframes floatAll {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Loading screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loader-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 8px solid #444;
+      border-top: 8px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+      color: #ffffff;
+      font-family: Consolas;
+      font-style: italic;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      margin-bottom: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+  <div class="loader-wrapper">
+    <div class="loading-text" id="loading-text"></div>
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<!-- Background Video -->
+<video autoplay muted loop id="bg-video">
+  <source src="gallery/Background.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<!-- Layout Container -->
+<div class="container">
+  <!-- Left (Bio) Section -->
+  <div class="bio-box">
+    <h1><strong>Katt's info</strong></h1>
+    <p>Hi, welcome, I'm dawn'blaze, Katt, ^q^ or any name you have meet me with. I like anything related to tech, specially videogames! sometimes roblox, minecraft or maybe even vrchat!</p>
+    <p class="List"><strong>Pronouns:</strong> Any</p>
+    <p class="List"><strong>Sexuality:</strong> Straight</p>
+    <p class="List"><strong>Age:</strong> <span id="age-counter">13</span></p>
+  </div>
+
+  <!-- Right (Cat Video) Section -->
+  <div class="right-space">
+    <video id="cat-video" playsinline muted>
+      <source src="gallery/SpawnCat.webm" type="video/webm">
+      <source src="gallery/SpawnCat.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<!-- Socials -->
+<div class="socials">
+
+  <a href="https://discord.gg/YurQQEfgZP" class="social-button discord-button" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-discord"></i>
+  </a>
+  <a href="https://www.youtube.com/@KattStarz" class="social-button youtube-button" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-youtube"></i>
+  </a>
+  <a href="https://www.tiktok.com/@KattStarzz" class="social-button tiktok-button" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-tiktok"></i>
+  </a>
+  <a href="https://artfight.net/~Dawnblaze" class="social-button artfight-button" target="_blank" rel="noopener noreferrer">
+    <img src="gallery/artfight.png" alt="ArtFight">
+  </a>
+  <a href="portafolio" class="other-text">Portafolio &gt;</a>
+  
+  <!-- Anonymous Message Box -->
+<div id="anon-message-box" style="position:fixed; bottom:100px; left:40px; z-index:10;">
+  <form id="messageForm" method="POST" action="send.php">
+    <textarea name="content" placeholder="Send an anonymous message..." rows="3" cols="30" style="resize:none; padding:8px; border-radius:8px; border:none;"></textarea><br>
+    <button type="submit" style="padding:8px 12px; margin-top:5px; border-radius:8px; border:none; background:#5865F2; color:white;">Send</button>
+  </form>
+  <div id="msgStatus" style="margin-top:5px; color:#0f0;"></div>
+</div>
+
+</div>
+
+<script>
+  // Loading text typewriter
+  (function(){
+    const textEl = document.getElementById('loading-text');
+    const message = 'Loading :3...';
+    let index = 0;
+    function type() {
+      if (index < message.length) {
+        textEl.textContent += message.charAt(index);
+        index++;
+        setTimeout(type, 120);
+      }
+    }
+    type();
+  })();
+
+  // After page loads, fade out loading & fade in cat video
+  window.onload = function () {
+    const loadingScreen = document.getElementById('loading-screen');
+    const catVideo = document.getElementById('cat-video');
+
+    // Fade out loading screen
+    loadingScreen.style.transition = 'opacity 0.5s ease';
+    loadingScreen.style.opacity = '0';
+
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+
+      // Fade in & play cat spawn video
+      catVideo.style.opacity = '1';
+      catVideo.play();
+
+      // When spawn ends, switch to idle loop
+      catVideo.addEventListener('ended', () => {
+        catVideo.innerHTML = `
+          <source src="gallery/IdleCat.webm" type="video/webm">
+          <source src="gallery/IdleCat.mp4" type="video/mp4">
+        `;
+        catVideo.loop = true;
+        catVideo.load();
+        catVideo.play();
+      });
+    }, 500);
+  };
+</script>
+
+<script type="module">
+/* Yearly counter */
+const STORAGE_KEY = 'yearly-counter';
+const MIN_VALUE   = 13;
+
+function loadState() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  return raw
+    ? JSON.parse(raw)
+    : { value: MIN_VALUE, lastYear: new Date().getFullYear() };
+}
+
+function saveState(state) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+export function getCurrentValue() {
+  const thisYear = new Date().getFullYear();
+  const state    = loadState();
+
+  if (thisYear > state.lastYear) {
+    state.value   += thisYear - state.lastYear;
+    state.lastYear = thisYear;
+    saveState(state);
+  }
+
+  if (state.value < MIN_VALUE) {
+    state.value = MIN_VALUE;
+    saveState(state);
+  }
+  return state.value;
+}
+
+document.getElementById('age-counter').textContent = getCurrentValue();
+</script>
+
+</body>
+</html>
